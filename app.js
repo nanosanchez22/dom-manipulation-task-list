@@ -78,6 +78,8 @@ function loadTasks(id, owner, name, description, imgUrl) {
   const li = document.createElement('li');
   li.innerHTML = taskTemplate;
 
+  li.onclick = deleteTaskHandler;
+
   ul.appendChild(li)
 }
 
@@ -116,9 +118,23 @@ function addTaskHandler(event) {
   loadTasks(id, owner, name, description, imgUrl);
 }
 
+function handleButtonClick(event) {
+  event.preventDefault(); 
+  addTaskAlert(); 
+  addTaskHandler(); 
+}
+
 // 3 - Funcion
 // Eliminar elemento en la lista al hacer click sobre el elemento
-function deleteTaskHandler(taskElement) {}
+function deleteTaskHandler(taskElement) {
+  const li = event.target.closest('li');
+  const taskId = parseInt(li.querySelector('h4').innerText.split(': ')[1]);
+
+  tasks = tasks.filter(task => task.id !== taskId);
+  li.remove();
+
+  redirectWhenNoTask();
+}
 
 // 4 - Funcion
 // Crear un boton para vaciar/eliminar todas las tareas
