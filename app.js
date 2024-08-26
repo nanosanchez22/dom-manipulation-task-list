@@ -126,7 +126,7 @@ function handleButtonClick(event) {
 
 // 3 - Funcion
 // Eliminar elemento en la lista al hacer click sobre el elemento
-function deleteTaskHandler(taskElement) {
+function deleteTaskHandler(event) {
   const li = event.target.closest('li');
   const taskId = parseInt(li.querySelector('h4').innerText.split(': ')[1]);
 
